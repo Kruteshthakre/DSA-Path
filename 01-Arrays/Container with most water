@@ -1,0 +1,29 @@
+// Problem: Container With Most Water
+// Approach: Two Pointers
+// Time Complexity: O(n)
+// Space Complexity: O(1)
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+        int largest = 0;
+        int n = height.size();
+
+        // Two pointers 
+        int i = 0;
+        int j = n - 1;
+
+        while (i < j) {
+            int water = (j - i) * min(height[i], height[j]);
+
+            largest = max(largest, water);
+
+            if (height[i] < height[j])
+                i++;
+            else
+                j--;
+        }
+
+        return largest;
+    }
+};
